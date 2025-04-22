@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+</head>
+<body>
+    <h1>Реєстрація на Work searching</h1>
+    <form action="register" method="post">
+        <input type="text" id="username" name="username" placeholder="Введіть свій нікнейм"><br><br>
+        <input type="text" id="password" name="password" placeholder="Введіть пароль"><br><br>
+        <input type="radio" id="employer" name="role" value="EMPLOYER">
+        <label for="employer">Роботодавець</label><br><br>
+        <input type="radio" id="employee" name="role" value="EMPLOYEE">
+        <label for="employee">Робітник</label><br><br>
+        <button type="submit">Зареєструватись</button>
+    </form>
+    <p th:if="${error}" th:text="${error}"></p>
+</body>
+</html>

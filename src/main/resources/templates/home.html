@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна</title>
+</head>
+<body>
+    <h1>Work searching</h1>
+    <a href="/login">Увійти</a>
+    <a href="/register">Зареєструватись</a><br><br>
+    <h1>Актуальні вакансії</h1>
+
+    <div>
+        <div th:each="v : ${vacancies}">
+            <h2 th:text="${v.title}"></h2><br>
+            <p th:text="${v.description}"></p><br>
+            <a th:href="@{'/vacancies/' + ${v.id}}">Детальніше</a>
+        </div>
+    </div>
+</body>
+</html>

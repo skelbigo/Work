@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагування вакансії</title>
+</head>
+<body>
+  <h1>Редагування вакансії</h1>
+
+  <form th:action="@{'/vacancies/edit/' + ${vacancy.id}}" method="post">
+    <label>Назва вакансії</label><br>
+    <input type="text" name="title" th:value="${vacancy.title}"><br><br>
+    <label>Опис вакансії</label><br>
+    <input type="text" name="description" th:value="${vacancy.description}"><br><br>
+    <label>Вимоги вакансії</label><br>
+    <input type="text" name="requirement" th:value="${vacancy.requirements[0].content}"><br><br>
+
+    <button type="submit">Зберегти зміни</button>
+  </form>
+
+  <a th:href="@{'/profile-employer'}">Назад до списку</a>
+</body>
+</html>

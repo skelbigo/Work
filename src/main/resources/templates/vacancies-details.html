@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Деталі вакансії</title>
+</head>
+<body>
+    <h1 th:text="${vacancy.title}"></h1><br>
+    <h2>Опис:</h2><br>
+    <p th:text="${vacancy.description}"></p>
+    <p th:text="${requirement.requirement}"></p>
+    <a href="/vacancies">Назад до списку вакансій</a>
+</body>
+</html>
