@@ -10,6 +10,7 @@ services:
       MYSQL_DATABASE: work
     ports:
       - "3306:3306"
+    hostname: mysql
     volumes:
       - mysql-data:/var/lib/mysql
 

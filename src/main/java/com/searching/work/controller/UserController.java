@@ -2,6 +2,7 @@ package com.searching.work.controller;
 
 import com.searching.work.model.Role;
 import com.searching.work.model.User;
+import com.searching.work.model.Vacancy;
 import com.searching.work.repository.UserRepository;
 import com.searching.work.repository.VacancyRepository;
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -62,6 +65,10 @@ public class UserController {
         userRepository.save(user);
 
         session.setAttribute("loggedUser", user);
+
+        List<Vacancy> vacancies = vacancyRepository.findByUser(user);
+        model.addAttribute("vacancies", vacancies);
+
         return "vacancies";
     }
 
@@ -88,6 +95,9 @@ public class UserController {
         }
 
         session.setAttribute("loggedUser", user);
+
+        List<Vacancy> vacancies = vacancyRepository.findByUser(user);
+        model.addAttribute("vacancies", vacancies);
 
         return "vacancies";
     }

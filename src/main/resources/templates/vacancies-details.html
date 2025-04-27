@@ -5,10 +5,16 @@
     <title>Деталі вакансії</title>
 </head>
 <body>
+    <h1>Деталі вакансії</h1>
     <h1 th:text="${vacancy.title}"></h1><br>
-    <h2>Опис:</h2><br>
     <p th:text="${vacancy.description}"></p>
-    <p th:text="${requirement.requirement}"></p>
-    <a href="/vacancies">Назад до списку вакансій</a>
+    <h2>Вимоги:</h2><br>
+    <div th:each="requirement : ${requirements}">
+        <p th:text="${requirement.content}"></p>
+    </div>
+
+    <form action="/vacancies" method="get">
+        <button type="submit">Назад до списку вакансій</button>
+    </form>
 </body>
 </html>

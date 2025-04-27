@@ -119,4 +119,28 @@ public class VacanciesController {
         model.addAttribute("vacancies", vacancyRepository.findByUser(user));
         return "profile-employer";
     }
+
+    @GetMapping("/profile-employer")
+    public String showProfileEmployer(@SessionAttribute("loggedUser") User user, Model model) {
+        List<Vacancy> vacancies = vacancyRepository.findByUser(user);
+        model.addAttribute("vacancies", vacancies);
+        return "profile-employer";
+    }
+
+    @GetMapping("/vacancies/{id}")
+    public String showVacancyDetails(@PathVariable Long id, Model model) {
+        // Отримуємо вакансію за ID
+        Vacancy vacancy = vacancyRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid vacancy ID"));
+
+        // Додаємо вакансію в модель
+        model.addAttribute("vacancy", vacancy);
+
+        // Якщо є вимоги, додаємо їх в модель
+        if (!vacancy.getRequirements().isEmpty()) {
+            model.addAttribute("requirements", vacancy.getRequirements());
+        }
+
+        return "vacancies-details";  // Повертаємо шаблон
+    }
 }
