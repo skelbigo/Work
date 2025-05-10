@@ -26,6 +26,12 @@ public class VacanciesController {
         this.vacancyRepository = vacancyRepository;
     }
 
+    @GetMapping("/")
+    public String homePage(Model model) {
+        model.addAttribute("vacancies", vacancyRepository.findAll());
+        return "home";
+    }
+
     @GetMapping("/vacancies")
     public String getVacancies(Model model) {
         model.addAttribute("vacancies", vacancyRepository.findAll());
@@ -114,8 +120,8 @@ public class VacanciesController {
 
     @GetMapping("/employer/vacancies")
     public String showVacancies(@SessionAttribute("loggedUser") User user, Model model) {
-        List<Vacancy> vacancies = vacancyRepository.findByUser(user);
-        model.addAttribute("vacancies", vacancyRepository.findAll());
+        List<Vacancy> userVacancies = vacancyRepository.findByUser(user);
+        model.addAttribute("vacancies", userVacancies);
 
         return "profile-employer";
     }
