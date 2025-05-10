@@ -2,8 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Роботодавець</title>
+    <title>Профіль співробітника</title>
 </head>
 <body>
+<h1>Профіль співробітника</h1>
+
+<form action="/vacancies" method="get">
+    <button type="submit">На головну сторінку</button>
+</form>
+
+<form action="/vacancies/search" method="get">
+    <label for="keyword">Пошук по ключовим словам:</label><br>
+    <input type="text" id="keyword" name="keyword" placeholder="Введіть ключові слова"><br><br>
+    <button type="submit">Пошук</button>
+</form>
+
+<h2>Результати пошуку вакансій</h2>
+<div>
+    <div th:each="v : ${vacancies}">
+        <h3 th:text="${v.title}"></h3><br>
+        <p th:text="${v.description}"></p><br>
+        <a th:href="@{'/vacancies/' + ${v.id}}">Детальніше</a><br><br>
+    </div>
+</div>
 </body>
 </html>

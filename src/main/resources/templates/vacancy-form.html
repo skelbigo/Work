@@ -3,18 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Створення вакансії</title>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
   <h1>Створи нову вакансію</h1>
-  <form action="/employer/vacancies" method="post">
+  <form th:action="@{/employer/vacancies/create}" method="post">
     <label>Назва вакансії</label><br>
-    <input type="text" name="title"><br><br>
+    <input type="text" name="title" th:value="${currentTitle}"/><br><br>
+    <div th:if="${titleError}" class="error-message" th:text="${titleError}"></div>
     <label>Опис вакансії</label><br>
-    <input type="text" name="description"><br><br>
-    <label>Вимоги вакансії</label><br>
-    <input type="text" name="requirement"><br><br>
+    <input type="text" name="description" th:value="${currentDescription}"/><br><br>
+    <div th:if="${descriptionError}" class="error-message" th:text="${descriptionError}"></div>
 
-    <button type="submit">Створити</button>
+    <label>Вимоги вакансії</label><br>
+    <div id="requirements-container">
+      <div th:if="${currentRequirements != null}" th:each="req, stat : ${currentRequirements}">
+        <input type="text" name="requirement" th:value="${req}" />
+        <button type="submit" name="removeRequirement" th:value="${stat.index}">Видалити</button>
+        <br/><br/>
+      </div>
+    </div>
+
+    <div th:if="${(currentRequirements == null or currentRequirements.isEmpty()) and (action == 'initial' or action == null)}"></div>
+
+    <button type="submit" name="addRequirement" value="true">Додати вимогу</button><br><br>
+
+    <button type="submit" name="saveVacancy" value="true">Створити вакансію</button>
   </form>
 </body>
 </html>

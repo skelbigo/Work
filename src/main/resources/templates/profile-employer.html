@@ -2,41 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Профіль роботодаця</title>
+    <title>Профіль роботодавця</title>
 </head>
 <body>
-    <h1>Профіль роботодавця</h1>
-    <h2>Ласкаво просимо на сторінку роботодаця</h2>
+<h1>Профіль роботодавця</h1>
+<h2>Ласкаво просимо на сторінку роботодавця</h2>
 
-    <form action="/vacancies" method="get">
-        <button type="submit">На головну сторінку</button>
+<form action="/vacancies" method="get">
+    <button type="submit">На головну сторінку</button>
+</form>
+
+<h1>Додаткові функції для роботодавця</h1>
+<form action="/vacancies/form" method="get">
+    <button type="submit">Створити вакансію</button>
+</form>
+
+<h2>Ваші вакансії</h2>
+
+<div th:if="${vacancies.isEmpty()}">
+    <p>У вас ще немає створених вакансій</p>
+</div>
+
+<div th:each="v : ${vacancies}">
+    <h3 th:text="${v.title}"></h3>
+    <p th:text="${v.description}"></p>
+
+    <h3>Вимоги:</h3>
+    <ul>
+        <li th:each="req : ${v.requirements}" th:text="${req.content}"></li>
+    </ul>
+
+    <form th:action="@{'/vacancies/edit/' + ${v.id}}" method="get">
+        <button type="submit">Редагувати вакансію</button>
     </form>
 
-    <h1>Додаткові функції для роботодаця</h1>
-    <form action="/vacancies/form" method="get">
-        <button type="submit">Створити вакансію</button>
+    <form th:action="@{'/vacancies/delete/' + ${v.id}}" method="post">
+        <button type="submit"
+                onclick="return confirm('Ви впевнені, що хочете видалити?')">Видалити вакансію</button>
     </form>
-
-    <h2>Ваші вакансії</h2>
-
-    <div th:if="${vacancies.isEmpty()}">
-        <p>У вас ще немає створених вакансій</p>
-    </div>
-
-    <div th:each="v : ${vacancies}">
-        <h3 th:text="${v.title}"></h3>
-        <p th:text="${v.description}"></p>
-
-        <h3>Вимоги:</h3>
-        <p th:each="r : ${v.requirements}" th:text="${r.content}"></p>
-
-        <form th:action="@{'/vacancies/edit/' + ${v.id}}" method="get">
-            <button type="submit">Редагувати вакансію</button>
-        </form>
-
-        <form th:action="@{'/vacancies/delete/' + ${v.id}}" method="post">
-            <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити?')">Видалити вакансію</button>
-        </form>
-    </div>
+</div>
 </body>
 </html>

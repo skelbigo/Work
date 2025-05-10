@@ -9,9 +9,9 @@
     <h1 th:text="${vacancy.title}"></h1><br>
     <p th:text="${vacancy.description}"></p>
     <h2>Вимоги:</h2><br>
-    <div th:each="requirement : ${requirements}">
-        <p th:text="${requirement.content}"></p>
-    </div>
+    <ul>
+        <li th:each="req : ${vacancy.requirements}" th:text="${req.content}"></li>
+    </ul>
 
     <form action="/vacancies" method="get">
         <button type="submit">Назад до списку вакансій</button>

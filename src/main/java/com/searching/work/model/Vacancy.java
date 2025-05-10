@@ -57,10 +57,28 @@ public class Vacancy {
     }
 
     public List<Requirement> getRequirements() {
+        if (requirements == null) {
+            requirements = new ArrayList<>();
+        }
         return requirements;
     }
 
     public void setRequirements(List<Requirement> requirements) {
         this.requirements = requirements;
+    }
+
+    public void addRequirement(Requirement requirement) {
+        if (this.requirements == null) {
+            this.requirements = new ArrayList<>();
+        }
+        this.requirements.add(requirement);
+        requirement.setVacancy(this);
+    }
+
+    public void removeRequirement(Requirement requirement) {
+        if (this.requirements != null) {
+            this.requirements.remove(requirement);
+            requirement.setVacancy(null);
+        }
     }
 }

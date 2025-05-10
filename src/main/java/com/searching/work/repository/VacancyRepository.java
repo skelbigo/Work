@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface VacancyRepository extends CrudRepository<Vacancy, Long> {
     List<Vacancy> findByUser(User user);
+    List<Vacancy> findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCase(String title, String description);
 }

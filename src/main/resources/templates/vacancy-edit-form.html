@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Редагування вакансії</title>
+  <meta charset="UTF-8">
+  <title>Редагування вакансії</title>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 0.9em;
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Редагування вакансії</h1>
+<h1>Редагування вакансії</h1>
 
-  <form th:action="@{'/vacancies/edit/' + ${vacancy.id}}" method="post">
-    <label>Назва вакансії</label><br>
-    <input type="text" name="title" th:value="${vacancy.title}"><br><br>
-    <label>Опис вакансії</label><br>
-    <input type="text" name="description" th:value="${vacancy.description}"><br><br>
-    <label>Вимоги вакансії</label><br>
-    <input type="text" name="requirement" th:value="${vacancy.requirements[0].content}"><br><br>
+<form th:action="@{'/vacancies/edit/' + ${vacancy.id}}" method="post">
+  <label>Назва вакансії</label><br>
+  <input type="text" name="title" th:value="${vacancy.title}"/><br><br>
+  <div th:if="${titleError}" class="error-message" th:text="${titleError}"></div>
 
-    <button type="submit">Зберегти зміни</button>
-  </form>
+  <label>Опис вакансії</label><br>
+  <input type="text" name="description" th:value="${vacancy.description}"/><br><br>
+  <div th:if="${descriptionError}" class="error-message" th:text="${descriptionError}"></div><br/>
 
-  <a href="/profile-employer">Назад до списку</a>
+  <div th:if="${requirementError}" class="error-message" th:text="${requirementError}"></div>
+
+  <label>Вимоги вакансії</label><br>
+  <div id="requirements-container">
+    <div th:each="req, stat : ${currentRequirements}">
+      <input type="text" name="requirement" th:value="${req}" />
+      <button type="submit" name="removeRequirement" th:value="${stat.index}">
+        Видалити
+      </button>
+      <br/><br/>
+    </div>
+  </div>
+
+  <button type="submit" name="addRequirement" value="true">
+    Додати вимогу
+  </button>
+  <br/><br/>
+
+  <button type="submit" name="saveVacancy" value="true">Зберегти зміни</button>
+</form>
+
+<a href="/profile-employer">Назад до списку</a>
 </body>
 </html>
