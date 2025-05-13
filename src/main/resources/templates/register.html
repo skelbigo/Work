@@ -14,6 +14,7 @@
             <div class="form-group">
                 <label for="username">Логін</label>
                 <input type="text" id="username" name="username" placeholder="Username" required>
+                <p th:if="${error}" class="error-message" th:text="${error}"></p>
             </div>
 
             <div class="form-group">
@@ -34,8 +35,6 @@
             </fieldset>
 
             <button type="submit" class="btn">Зареєструватись</button>
-
-            <p th:if="${error}" class="error-message" th:text="${error}"></p>
         </form>
     </div>
 </div>
