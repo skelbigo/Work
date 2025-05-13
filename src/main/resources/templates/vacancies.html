@@ -1,26 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Вакансії</title>
+    <title>Вакансії | Work Searching</title>
+    <link rel="stylesheet" th:href="@{/vacancies.css}" href="/vacancies.css">
 </head>
 <body>
-    <h1>Веб-сайт пошуку роботи!</h1>
-    <form action="/profile" method="get">
-        <button type="submit">Профіль</button>
-    </form>
-    <form action="/exit" method="get">
-        <button type="submit">Вийти</button>
-    </form>
+<header>
+    <h1>Work Searching</h1>
+    <nav class="main-nav">
+        <a href="/vacancies/profile" class="btn">Профіль</a>
+        <a href="/exit" class="btn btn-logout">Вийти</a>
+    </nav>
+</header>
 
-    <h1>Актуальні вакансії</h1>
-
-    <div>
-        <div th:each="v : ${vacancies}">
-            <h2 th:text="${v.title}"></h2><br>
-            <p th:text="${v.description}"></p><br>
-            <a th:href="@{'/vacancies/' + ${v.id}}">Детальніше</a>
+<main>
+    <section class="vacancies-section">
+        <h2>Актуальні вакансії</h2>
+        <div class="vacancies-list">
+            <article class="vacancy-card" th:each="v : ${vacancies}">
+                <h3 th:text="${v.title}">Назва вакансії</h3>
+                <p th:text="${v.description}">Опис вакансії…</p>
+                <a th:href="@{'/vacancies/' + ${v.id} + '?from=vacancies'}" class="btn-outline">
+                    Детальніше
+                </a>
+            </article>
         </div>
-    </div>
+    </section>
+</main>
+<img src="/images/banner.jpg" alt="Banner" class="floating-img">
 </body>
 </html>

@@ -1,0 +1,235 @@
+/* ========= Variables & Reset ========= */
+:root {
+    --color-primary: #00e5ff;      /* неоновий блакитний */
+    --color-secondary: #ff00d6;    /* неоновий рожевий */
+    --color-bg-dark: #0b0723;      /* дуже темно-фіолетовий фон */
+    --color-card: #1f2233;         /* темно-синій для карт */
+    --color-text: #e0e0f8;         /* світло-сіро-блакитний текст */
+    --color-error: #ff5555;        /* помилка */
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========= Body & Header ========= */
+body {
+    background: linear-gradient(
+            135deg,
+            #0b0723 0%,
+            #210f4d 50%,
+            #2d1a68 100%
+    );
+    color: var(--color-text);
+    font-family: var(--font-base);
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--color-card);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+header h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+.main-nav .btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--color-bg-dark);
+    background-color: var(--color-primary);
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg-dark);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.main-nav .btn:hover {
+    transform: scale(1.05);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg-dark);
+}
+
+/* ========= Form Container ========= */
+.form-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--color-card);
+    border-radius: 8px;
+    box-shadow:
+            0 0 12px rgba(0,0,0,0.7),
+            inset 0 0 4px rgba(0,0,0,0.5);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+/* ========= Form Elements ========= */
+.create-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.create-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.create-form input,
+.create-form textarea {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.create-form input::placeholder,
+.create-form textarea::placeholder {
+    color: #777;
+}
+
+.create-form input:focus,
+.create-form textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow:
+            0 0 6px var(--color-secondary),
+            inset 0 0 4px var(--color-bg-dark);
+}
+
+.error-message {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: var(--color-error);
+}
+
+/* ========= Requirements Group ========= */
+.requirements-group .requirement-item {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.requirements-group .requirement-item input {
+    flex-grow: 1;
+}
+
+.btn-secondary {
+    padding: 0.4rem 0.8rem;
+    background-color: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow:
+            0 0 6px var(--color-secondary);
+    transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-bg-dark);
+    box-shadow:
+            0 0 12px var(--color-secondary),
+            0 0 24px var(--color-secondary);
+}
+
+/* ========= Form Actions ========= */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.form-actions .btn-outline {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+            0 0 6px var(--color-primary);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.form-actions .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary);
+}
+
+.form-actions .btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-bg-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+            0 0 8px var(--color-secondary),
+            0 0 16px var(--color-secondary),
+            inset 0 0 4px var(--color-bg-dark);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.form-actions .btn:hover {
+    transform: scale(1.03);
+    box-shadow:
+            0 0 12px var(--color-secondary),
+            0 0 24px var(--color-secondary),
+            inset 0 0 6px var(--color-bg-dark);
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1rem;
+    }
+    .form-actions {
+        flex-direction: column;
+    }
+    .form-actions .btn,
+    .form-actions .btn-outline {
+        width: 100%;
+    }
+}

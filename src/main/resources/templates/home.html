@@ -1,21 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <title>Головна</title>
+    <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-    <h1>Work searching</h1>
-    <a href="/login">Увійти</a>
-    <a href="/register">Зареєструватись</a><br><br>
-    <h1>Актуальні вакансії</h1>
+<header>
+    <h1>Work Searching</h1>
+    <nav class="main-nav">
+        <a href="/login" class="btn">Увійти</a>
+        <a href="/register" class="btn">Зареєструватися</a>
+    </nav>
+</header>
 
-    <div>
-        <div th:each="v : ${vacancies}">
-            <h2 th:text="${v.title}"></h2><br>
-            <p th:text="${v.description}"></p><br>
-            <a th:href="@{'/vacancies/' + ${v.id}}">Детальніше</a>
+<main>
+    <section class="vacancies-section">
+        <h2>Актуальні вакансії</h2>
+        <div class="vacancies-list">
+            <div class="vacancy-card" th:each="v : ${vacancies}">
+                <h3 th:text="${v.title}">Назва вакансії</h3>
+                <p th:text="${v.description}">Опис вакансії…</p>
+                <a th:href="@{'/vacancies/' + ${v.id} + '?from=home'}" class="btn-outline">Детальніше</a>
+            </div>
         </div>
-    </div>
+    </section>
+</main>
+<footer class="site-footer">
+    <img th:src="@{/images/banner.jpg}" alt="Banner" class="footer-banner floating-img">
+</footer>
 </body>
 </html>

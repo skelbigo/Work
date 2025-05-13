@@ -1,20 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <title>Деталі вакансії</title>
+    <link rel="stylesheet" th:href="@{/home.css}" href="/home.css">
+    <link rel="stylesheet" th:href="@{/vacancies-details.css}" href="/vacancies-details.css">
 </head>
 <body>
+<header>
     <h1>Деталі вакансії</h1>
-    <h1 th:text="${vacancy.title}"></h1><br>
-    <p th:text="${vacancy.description}"></p>
-    <h2>Вимоги:</h2><br>
-    <ul>
-        <li th:each="req : ${vacancy.requirements}" th:text="${req.content}"></li>
-    </ul>
+</header>
 
-    <form action="/vacancies" method="get">
-        <button type="submit">Назад до списку вакансій</button>
-    </form>
+<main>
+    <article class="vacancy-detail">
+        <h2 th:text="${vacancy.title}">Назва вакансії</h2>
+        <p class="description" th:text="${vacancy.description}">
+            Опис вакансії…
+        </p>
+
+        <section class="requirements">
+            <h3>Вимоги</h3>
+            <ul>
+                <li th:each="req : ${vacancy.requirements}" th:text="${req.content}">Вимога</li>
+            </ul>
+        </section>
+
+        <div class="actions">
+            <a th:if="${from == 'home'}"
+               th:href="@{/}"
+               class="btn-outline">Назад до головної</a>
+            <a th:if="${from == 'vacancies'}"
+               th:href="@{/vacancies}"
+               class="btn-outline">Назад до списку вакансій</a>
+            <a th:if="${from == 'profile'}"
+               th:href="@{/vacancies/profile}"
+               class="btn-outline">Назад до профілю</a>
+        </div>
+    </article>
+</main>
+<footer class="site-footer">
+    <img th:src="@{/images/banner.jpg}"
+         alt="Neon Banner"
+         class="floating-img">
+</footer>
 </body>
 </html>

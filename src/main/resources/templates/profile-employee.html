@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Профіль співробітника</title>
+    <title>Профіль працівника | Work Searching</title>
+    <link rel="stylesheet" href="/profile-employee.css">
 </head>
 <body>
-<h1>Профіль співробітника</h1>
+<header>
+    <h1>Work Searching</h1>
+    <nav class="main-nav">
+        <a href="/vacancies" class="btn">На головну</a>
+    </nav>
+</header>
 
-<form action="/vacancies" method="get">
-    <button type="submit">На головну сторінку</button>
-</form>
+<main>
+    <section class="search-section">
+        <h2>Пошук по ключовим словам</h2>
+        <form action="/vacancies/search" method="get" class="search-form">
+            <div class="form-group">
+                <label for="keyword">Ключові слова</label>
+                <input type="text" id="keyword" name="keyword" placeholder="Введіть ключові слова" required>
+            </div>
+            <button type="submit" class="btn">Пошук</button>
+        </form>
+        <div th:if="${searchError}" class="error-message" th:text="${searchError}"></div>
+    </section>
 
-<form action="/vacancies/search" method="get">
-    <label for="keyword">Пошук по ключовим словам:</label><br>
-    <input type="text" id="keyword" name="keyword" placeholder="Введіть ключові слова"><br><br>
-    <button type="submit">Пошук</button>
-</form>
-
-<h2>Результати пошуку вакансій</h2>
-<div>
-    <div th:each="v : ${vacancies}">
-        <h3 th:text="${v.title}"></h3><br>
-        <p th:text="${v.description}"></p><br>
-        <a th:href="@{'/vacancies/' + ${v.id}}">Детальніше</a><br><br>
-    </div>
-</div>
+    <section class="results-section">
+        <h2>Результати пошуку вакансій</h2>
+        <div class="results-list">
+            <article class="result-card" th:each="v : ${vacancies}">
+                <h3 th:text="${v.title}">Назва вакансії</h3>
+                <p th:text="${v.description}">Опис вакансії…</p>
+                <a th:href="@{'/vacancies/' + ${v.id} + '?from=profile'}" class="btn-outline">Детальніше</a>
+            </article>
+        </div>
+    </section>
+</main>
 </body>
 </html>

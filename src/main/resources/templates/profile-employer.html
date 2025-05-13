@@ -1,45 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Профіль роботодавця</title>
+    <title>Профіль роботодавця | Work Searching</title>
+    <link rel="stylesheet" href="/profile-employer.css">
 </head>
 <body>
-<h1>Профіль роботодавця</h1>
-<h2>Ласкаво просимо на сторінку роботодавця</h2>
+<header>
+    <h1>Work Searching</h1>
+    <nav class="main-nav">
+        <a href="/vacancies" class="btn">На головну</a>
+    </nav>
+</header>
 
-<form action="/vacancies" method="get">
-    <button type="submit">На головну сторінку</button>
-</form>
+<main>
+    <section class="employer-actions">
+        <h2>Додаткові функції</h2>
+        <form action="/vacancies/form" method="get">
+            <button type="submit" class="btn btn-create">Створити вакансію</button>
+        </form>
+    </section>
 
-<h1>Додаткові функції для роботодавця</h1>
-<form action="/vacancies/form" method="get">
-    <button type="submit">Створити вакансію</button>
-</form>
+    <section class="your-vacancies">
+        <h2>Ваші вакансії</h2>
 
-<h2>Ваші вакансії</h2>
+        <div class="no-vacancies" th:if="${vacancies.isEmpty()}">
+            <p>У вас ще немає створених вакансій</p>
+        </div>
 
-<div th:if="${vacancies.isEmpty()}">
-    <p>У вас ще немає створених вакансій</p>
-</div>
+        <div class="vacancies-list" th:if="${!vacancies.isEmpty()}">
+            <article class="vacancy-card" th:each="v : ${vacancies}">
+                <h3 th:text="${v.title}">Назва вакансії</h3>
+                <p th:text="${v.description}">Опис вакансії…</p>
 
-<div th:each="v : ${vacancies}">
-    <h3 th:text="${v.title}"></h3>
-    <p th:text="${v.description}"></p>
+                <div class="requirements">
+                    <h4>Вимоги:</h4>
+                    <ul>
+                        <li th:each="req : ${v.requirements}" th:text="${req.content}">Вимога</li>
+                    </ul>
+                </div>
 
-    <h3>Вимоги:</h3>
-    <ul>
-        <li th:each="req : ${v.requirements}" th:text="${req.content}"></li>
-    </ul>
-
-    <form th:action="@{'/vacancies/edit/' + ${v.id}}" method="get">
-        <button type="submit">Редагувати вакансію</button>
-    </form>
-
-    <form th:action="@{'/vacancies/delete/' + ${v.id}}" method="post">
-        <button type="submit"
-                onclick="return confirm('Ви впевнені, що хочете видалити?')">Видалити вакансію</button>
-    </form>
-</div>
+                <div class="card-actions">
+                    <form th:action="@{'/vacancies/edit/' + ${v.id}}" method="get">
+                        <button type="submit" class="btn-outline">Редагувати</button>
+                    </form>
+                    <form th:action="@{'/vacancies/delete/' + ${v.id}}" method="post">
+                        <button type="submit"
+                                class="btn-delete"
+                                onclick="return confirm('Ви впевнені, що хочете видалити?')">
+                            Видалити
+                        </button>
+                    </form>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
 </body>
 </html>

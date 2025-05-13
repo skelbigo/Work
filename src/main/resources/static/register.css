@@ -1,0 +1,152 @@
+/* src/main/resources/static/register.css */
+
+/* 1. Змінні палітри */
+:root {
+    --color-primary: #00e5ff;      /* неоновий блакитний */
+    --color-bg1:    #0b0723;       /* дуже темно-фіолетовий початок градієнта */
+    --color-bg2:    #210f4d;       /* середина градієнта */
+    --color-bg3:    #2d1a68;       /* кінець градієнта */
+    --color-card:   #1f2233;       /* фон контейнера */
+    --color-text:   #e0e0f8;       /* світло-сіроблакитний текст */
+    --color-input-bg:     #1f2233; /* фон полів вводу */
+    --color-input-border: #44475a; /* бордер полів вводу */
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Базові правила */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: linear-gradient(
+            135deg,
+            var(--color-bg1) 0%,
+            var(--color-bg2) 50%,
+            var(--color-bg3) 100%
+    );
+    color: var(--color-text);
+    font-family: var(--font-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 3. Обгортка */
+.register-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+/* 4. Контейнер з формою */
+.register-container {
+    width: 100%;
+    background-color: var(--color-card);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow:
+            0 0 12px rgba(0,0,0,0.7),
+            inset 0 0 4px rgba(0,0,0,0.5);
+}
+.register-container h2 {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+/* 5. Поля форми */
+.register-form .form-group {
+    margin-bottom: 1.2rem;
+}
+.register-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+.register-form input[type="text"],
+.register-form input[type="password"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-input-bg);
+    border: 1px solid var(--color-input-border);
+    border-radius: 5px;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.register-form input::placeholder {
+    color: #888;
+}
+.register-form input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow:
+            0 0 6px var(--color-primary),
+            inset 0 0 4px var(--color-bg1);
+}
+
+/* 6. Радіокнопки */
+.role-group {
+    margin-bottom: 1.2rem;
+    border: none;
+    padding: 0;
+}
+.role-group legend {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+.radio-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    color: var(--color-text);
+}
+.radio-wrapper input {
+    accent-color: var(--color-primary);
+}
+
+/* 7. Кнопка */
+.register-container .btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg1);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg1);
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+.register-container .btn:hover {
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg1);
+    transform: scale(1.02);
+}
+
+/* 8. Адаптив */
+@media (max-width: 360px) {
+    .register-container {
+        padding: 1.5rem;
+    }
+    .register-container h2 {
+        font-size: 1.6rem;
+    }
+}

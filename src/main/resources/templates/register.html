@@ -1,20 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <title>Реєстрація</title>
+    <title>Реєстрація | Work Searching</title>
+    <link rel="stylesheet" href="/register.css">
 </head>
 <body>
-    <h1>Реєстрація на Work searching</h1>
-    <form action="register" method="post">
-        <input type="text" id="username" name="username" placeholder="Введіть свій нікнейм"><br><br>
-        <input type="text" id="password" name="password" placeholder="Введіть пароль"><br><br>
-        <input type="radio" id="employer" name="role" value="EMPLOYER">
-        <label for="employer">Роботодавець</label><br><br>
-        <input type="radio" id="employee" name="role" value="EMPLOYEE">
-        <label for="employee">Робітник</label><br><br>
-        <button type="submit">Зареєструватись</button>
-    </form>
-    <p th:if="${error}" th:text="${error}"></p>
+<div class="register-wrapper">
+    <div class="register-container">
+        <h2>Реєстрація на Work Searching</h2>
+        <form action="/register" method="post" class="register-form">
+
+            <div class="form-group">
+                <label for="username">Логін</label>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+
+            <fieldset class="form-group role-group">
+                <legend>Роль</legend>
+                <label class="radio-wrapper">
+                    <input type="radio" id="employer" name="role" value="EMPLOYER" required>
+                    Роботодавець
+                </label>
+                <label class="radio-wrapper">
+                    <input type="radio" id="employee" name="role" value="EMPLOYEE" required>
+                    Робітник
+                </label>
+            </fieldset>
+
+            <button type="submit" class="btn">Зареєструватись</button>
+
+            <p th:if="${error}" class="error-message" th:text="${error}"></p>
+        </form>
+    </div>
+</div>
 </body>
 </html>

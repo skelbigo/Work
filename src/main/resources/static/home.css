@@ -1,0 +1,200 @@
+/* home.css */
+
+/* ========= Variables & Reset ========= */
+:root {
+    --color-primary: #00e5ff;
+    --color-secondary: #ff00d6;
+    --color-bg-dark: #0b0723;
+    --color-bg-mid: #210f4d;
+    --color-bg-light: #2d1a68;
+    --color-card: #1f2233;
+    --color-text: #e0e0f8;
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========= Body ========= */
+body {
+    background: linear-gradient(
+            135deg,
+            var(--color-bg-dark) 0%,
+            var(--color-bg-mid) 50%,
+            var(--color-bg-light) 100%
+    );
+    color: var(--color-text);
+    font-family: var(--font-base);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========= Header & Nav ========= */
+header {
+    background-color: var(--color-card);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+.main-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.main-nav .btn {
+    padding: 0.6rem 1.2rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg-dark);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.main-nav .btn:hover {
+    transform: scale(1.05);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg-dark);
+}
+
+/* ========= Vacancies Section ========= */
+.vacancies-section {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.vacancies-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    color: var(--color-primary);
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+    margin-bottom: 2rem;
+}
+
+/* ========= Grid of Vacancy Cards ========= */
+.vacancies-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.vacancy-card {
+    background-color: var(--color-card);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow:
+            0 2px 8px rgba(0,0,0,0.5),
+            inset 0 0 4px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.vacancy-card h3 {
+    font-size: 1.4rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.8rem;
+    text-shadow:
+            0 0 6px var(--color-secondary),
+            0 0 12px var(--color-secondary);
+}
+
+.vacancy-card p {
+    flex-grow: 1;
+    margin-bottom: 1.2rem;
+    color: var(--color-text);
+    line-height: 1.4;
+}
+
+/* ========= Outline Button ========= */
+.btn-outline {
+    align-self: flex-start;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 0 6px var(--color-primary);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary);
+}
+
+/* ========= Floating Banner Image ========= */
+.floating-img {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 40vw;
+    max-width: 600px;
+    height: auto;
+    pointer-events: none;
+    z-index: 1000;
+
+    /* НЕОНОВЕ світіння */
+    box-shadow:
+        /* зовнішнє світіння */
+            0 0 16px var(--color-primary),
+            0 0 32px var(--color-primary),
+            0 0 48px var(--color-primary),
+            0 0 64px var(--color-primary),
+                /* внутрішнє ніжне світіння */
+            inset 0 0 8px var(--color-primary);
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 800px) {
+    .vacancies-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .vacancies-section {
+        padding: 0 1rem;
+    }
+    .vacancies-section h2 {
+        font-size: 1.8rem;
+    }
+    .floating-img {
+        width: 60vw;
+    }
+}

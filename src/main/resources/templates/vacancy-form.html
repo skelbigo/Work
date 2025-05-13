@@ -1,39 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Створення вакансії</title>
-  <style>
-    .error-message {
-      color: red;
-      font-size: 0.9em;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Створення вакансії | Work Searching</title>
+  <link rel="stylesheet" href="/vacancy-form.css">
 </head>
 <body>
-  <h1>Створи нову вакансію</h1>
-  <form th:action="@{/employer/vacancies/create}" method="post">
-    <label>Назва вакансії</label><br>
-    <input type="text" name="title" th:value="${currentTitle}"/><br><br>
-    <div th:if="${titleError}" class="error-message" th:text="${titleError}"></div>
-    <label>Опис вакансії</label><br>
-    <input type="text" name="description" th:value="${currentDescription}"/><br><br>
-    <div th:if="${descriptionError}" class="error-message" th:text="${descriptionError}"></div>
+<header>
+  <h1>Work Searching</h1>
+  <nav class="main-nav">
+    <a href="/vacancies/profile" class="btn">Назад до списку</a>
+  </nav>
+</header>
 
-    <label>Вимоги вакансії</label><br>
-    <div id="requirements-container">
-      <div th:if="${currentRequirements != null}" th:each="req, stat : ${currentRequirements}">
-        <input type="text" name="requirement" th:value="${req}" />
-        <button type="submit" name="removeRequirement" th:value="${stat.index}">Видалити</button>
-        <br/><br/>
+<main>
+  <div class="form-container">
+    <h2>Створення нової вакансії</h2>
+    <form th:action="@{/vacancies/create}"
+          th:object="${vacancyForm}"
+          method="post"
+          class="create-form">
+
+      <div class="form-group">
+        <label for="title">Назва вакансії</label>
+        <input id="title" th:field="*{title}" placeholder="Введіть назву">
+        <div class="error-message" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
       </div>
-    </div>
 
-    <div th:if="${(currentRequirements == null or currentRequirements.isEmpty()) and (action == 'initial' or action == null)}"></div>
+      <div class="form-group">
+        <label for="description">Опис вакансії</label>
+        <textarea id="description" th:field="*{description}" rows="4" placeholder="Введіть опис"></textarea>
+        <div class="error-message" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+      </div>
 
-    <button type="submit" name="addRequirement" value="true">Додати вимогу</button><br><br>
+      <div class="form-group requirements-group">
+        <label>Вимоги</label>
+        <div th:each="req, stat : *{requirements}" class="requirement-item">
+          <input th:field="*{requirements[__${stat.index}__]}" placeholder="Нова вимога">
+          <div class="error-message"
+               th:if="${#fields.hasErrors('requirements')}"
+               th:errors="*{requirements}">
+          </div>
+          <button type="submit"
+                  name="removeRequirement"
+                  th:value="${stat.index}"
+                  class="btn-secondary">
+            Видалити
+          </button>
+        </div>
+      </div>
 
-    <button type="submit" name="saveVacancy" value="true">Створити вакансію</button>
-  </form>
+      <div class="form-actions">
+        <button type="submit" name="addRequirement" value="true" class="btn-outline">
+          Додати вимогу
+        </button>
+        <button type="submit" class="btn">
+          Зберегти вакансію
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
 </body>
 </html>

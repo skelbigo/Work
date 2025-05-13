@@ -1,0 +1,240 @@
+/* vacancy-edit-form.css */
+
+/* ========= Variables & Reset ========= */
+:root {
+    --color-primary: #00e5ff;       /* неоновий блакитний */
+    --color-secondary: #ff00d6;     /* неоновий рожевий */
+    --color-bg: #0d0f1e;            /* темно-фіолетовий фон */
+    --color-card: #1f2233;          /* темно-синій для карток */
+    --color-text: #e0e0f8;          /* світло-сіро-блакитний текст */
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========= Body & Header ========= */
+body {
+    background: linear-gradient(
+            135deg,
+            #0b0723 0%,
+            #210f4d 50%,
+            #2d1a68 100%
+    );
+    color: var(--color-text);
+    font-family: var(--font-base);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: var(--color-card);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+.main-nav .btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.main-nav .btn:hover {
+    transform: scale(1.05);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg);
+}
+
+/* ========= Main Form Container ========= */
+.form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+.form-container h2 {
+    color: var(--color-primary);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+/* ========= Form Styling ========= */
+.edit-form {
+    background-color: var(--color-card);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow:
+            0 0 12px rgba(0,0,0,0.7),
+            inset 0 0 4px rgba(0,0,0,0.5);
+}
+
+.form-group,
+.requirements-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label,
+.requirements-group > label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea,
+.requirement-item input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-secondary);
+    border-radius: 5px;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.requirement-item input::placeholder {
+    color: #888;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.requirement-item input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow:
+            0 0 6px var(--color-primary),
+            inset 0 0 4px var(--color-bg);
+}
+
+.error-message {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: #ff5555;
+}
+
+/* ========= Requirements List ========= */
+.requirements-group .requirement-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.btn-secondary {
+    padding: 0.4rem 0.8rem;
+    background-color: transparent;
+    color: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow:
+            0 0 6px var(--color-secondary),
+            inset 0 0 4px var(--color-bg);
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-bg);
+    box-shadow:
+            0 0 12px var(--color-secondary),
+            inset 0 0 6px var(--color-bg);
+}
+
+/* ========= Form Actions ========= */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.btn-outline {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+    border-radius: 5px;
+    font-weight: 600;
+    box-shadow:
+            0 0 6px var(--color-primary);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary);
+}
+
+.edit-form .btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg);
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.edit-form .btn:hover {
+    transform: scale(1.02);
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg);
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 600px) {
+    .form-actions {
+        flex-direction: column;
+    }
+}

@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>Вхід | Work Searching</title>
+  <link rel="stylesheet" th:href="@{/home.css}" href="/home.css">
+  <link rel="stylesheet" href="/login.css">
 </head>
 <body>
-<h2>Вхід на work-searching!</h2>
-  <form action="/login" method="post">
-    <input type="text" id="username" name="username" placeholder="Введіть свій нікнейм"><br><br>
-    <input type="text" id="password" name="password" placeholder="Введіть пароль"><br><br>
-    <button type="submit">Увійти</button><br><br>
-  </form>
-  <p th:if="${error}" th:text="${error}"></p>
+<div class="login-wrapper">
+  <div class="login-container">
+    <h2>Вхід на Work Searching</h2>
+    <form th:action="@{/login}" method="post" class="login-form">
+      <div class="form-group">
+        <label for="username">Логін</label>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div th:if="${error}" class="error-message" th:text="${error}"></div>
+      </div>
+      <button type="submit" class="btn">Увійти</button>
+    </form>
+  </div>
+</div>
 </body>
 </html>

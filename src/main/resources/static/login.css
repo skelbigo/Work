@@ -1,0 +1,131 @@
+/* ========= Variables & Reset ========= */
+:root {
+    /* неоново-цифрова палітра */
+    --color-primary: #00e5ff;      /* неоновий блакитний */
+    --color-secondary: #ff00d6;    /* неоновий рожевий */
+    --color-bg-light: #0b0723;     /* дуже темно-фіолетовий */
+    --color-bg-dark: #1f2233;      /* темний для контейнерів */
+    --color-text: #e0e0f8;         /* світло-сіро-блакитний текст */
+    --color-white: #ffffff;
+    --font-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========= Page Wrapper ========= */
+body {
+    background: linear-gradient(
+            135deg,
+            #0b0723 0%,
+            #210f4d 50%,
+            #2d1a68 100%
+    );
+    font-family: var(--font-base);
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-wrapper {
+    width: 100%;
+    max-width: 400px;
+    padding: 1rem;
+}
+
+/* ========= Container ========= */
+.login-container {
+    background-color: var(--color-bg-dark);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow:
+            0 0 12px rgba(0,0,0,0.7),
+            inset 0 0 4px rgba(0,0,0,0.5);
+    width: 100%;
+}
+
+.login-container h2 {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary);
+}
+
+/* ========= Form ========= */
+.login-form .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background-color: var(--color-bg-dark);
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-text);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input::placeholder {
+    color: #888;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    box-shadow:
+            0 0 6px var(--color-primary),
+            inset 0 0 4px var(--color-bg-dark);
+}
+
+/* ========= Submit Button ========= */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-primary);
+    color: var(--color-bg-light);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow:
+            0 0 8px var(--color-primary),
+            0 0 16px var(--color-primary),
+            inset 0 0 4px var(--color-bg-light);
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    box-shadow:
+            0 0 12px var(--color-primary),
+            0 0 24px var(--color-primary),
+            inset 0 0 6px var(--color-bg-light);
+    transform: scale(1.05);
+}
+
+/* ========= Responsive ========= */
+@media (max-width: 360px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+    .login-container h2 {
+        font-size: 1.6rem;
+    }
+}
