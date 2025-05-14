@@ -9,7 +9,10 @@
 <header>
     <h1>Work Searching</h1>
     <nav class="main-nav">
-        <a href="/vacancies/profile" class="btn">Профіль</a>
+        <a href="/vacancies/profile" class="btn"
+           th:text="${session.loggedUser.role == T(com.searching.work.model.Role).EMPLOYEE} ? 'Пошук' : 'Профіль'">
+            Профіль
+        </a>
         <a href="/exit" class="btn btn-logout">Вийти</a>
     </nav>
 </header>
